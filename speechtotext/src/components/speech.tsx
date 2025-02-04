@@ -1,13 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { Button, ButtonGroup } from "@heroui/button";
 import { useTimer } from "react-use-precision-timer";
+import { ArrayContext } from "@/components/global";
+import { useLocation } from "react-router-dom";
 
 const SpeechToText = () => {
+  const { splits, setSplits } = useContext(ArrayContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    SpeechRecognition.stopListening();
+    stopwatch.stop();
+  }, [location]);
+
   const {
     transcript,
     listening,
@@ -81,7 +92,10 @@ const SpeechToText = () => {
 
   useEffect(() => {
     if (randomNum.answer.some((v) => transcript.includes(v))) {
-      console.log({ answer: randomNum.question, elapsed: elapsed });
+      setSplits([
+        ...splits,
+        { question: randomNum.question, elapsed: elapsed },
+      ]);
       resetTranscript();
       question();
       stopwatch.start();

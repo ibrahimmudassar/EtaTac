@@ -1,20 +1,24 @@
 import { Route, Routes } from "react-router-dom";
+import { ArrayProvider } from "@/components/global";
+
 
 import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
+import DataPage from "@/pages/data";
 import PricingPage from "@/pages/pricing";
 import BlogPage from "@/pages/blog";
 import AboutPage from "@/pages/about";
 
 function App() {
   return (
-    <Routes>
-      <Route element={<IndexPage />} path="/" />
-      <Route element={<DocsPage />} path="/docs" />
-      <Route element={<PricingPage />} path="/pricing" />
-      <Route element={<BlogPage />} path="/blog" />
-      <Route element={<AboutPage />} path="/about" />
-    </Routes>
+    <ArrayProvider>
+      <Routes>
+        <Route element={<IndexPage />} path="/" />
+        <Route element={<DataPage />} path="/data" />
+        <Route element={<PricingPage />} path="/pricing" />
+        <Route element={<BlogPage />} path="/blog" />
+        <Route element={<AboutPage />} path="/about" />
+      </Routes>
+    </ArrayProvider>
   );
 }
 
