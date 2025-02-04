@@ -9,7 +9,12 @@ export const siteConfig = {
       href: "/data",
     },
   ],
-  navMenuItems: [],
+  navMenuItems: [
+    {
+      label: "Data",
+      href: "/data",
+    },
+  ],
   links: {
     github: "https://github.com/ibrahimmudassar",
     twitter: "",
