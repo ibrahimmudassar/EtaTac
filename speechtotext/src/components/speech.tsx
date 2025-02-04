@@ -131,7 +131,7 @@ const SpeechToText = () => {
         {elapsed > 0 ? (
           <p className="text-4xl font-bold">{elapsed}</p>
         ) : (
-          <p className="text-4xl font-bold">⬆️Turn on the mic to play⬆️</p>
+          <p className="text-xl font-bold">⬆️Turn on the mic to play⬆️</p>
         )}
         {/* <p className="text-4xl font-bold">{elapsed}</p> */}
         <p className="text-8xl font-bold">{randomNum.question}</p>
