@@ -54,7 +54,7 @@ const SpeechToText = () => {
   };
 
   const question = () => {
-    const oneRandomNum = generateRandomNumber(11, 12);
+    const oneRandomNum = generateRandomNumber(2, 12);
     const twoRandomNum = generateRandomNumber(2, 100);
     const product = oneRandomNum * twoRandomNum;
     const question = `${Math.min(oneRandomNum, twoRandomNum)} * ${Math.max(oneRandomNum, twoRandomNum)}`;
