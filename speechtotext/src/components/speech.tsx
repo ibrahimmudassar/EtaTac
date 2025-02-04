@@ -17,6 +17,7 @@ const SpeechToText = () => {
   useEffect(() => {
     SpeechRecognition.stopListening();
     stopwatch.stop();
+    resetTranscript();
   }, [location]);
 
   const {
