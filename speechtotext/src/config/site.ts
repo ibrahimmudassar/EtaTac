@@ -24,7 +24,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/ibrahimmudassar",
+    github: "",
     twitter: "",
     docs: "",
     discord: "",

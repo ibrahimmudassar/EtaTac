@@ -11,7 +11,6 @@ import {
   TableCell,
   getKeyValue,
 } from "@heroui/table";
-import { div } from "framer-motion/client";
 
 export default function DataPage() {
   const { splits, setSplits } = useContext(ArrayContext);
