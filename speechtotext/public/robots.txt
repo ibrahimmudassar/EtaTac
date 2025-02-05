@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+User-agent: Googlebot
+Disallow: /drafts/
+
+User-agent: Bingbot
+Crawl-delay: 10
