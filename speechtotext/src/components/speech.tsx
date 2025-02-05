@@ -291,7 +291,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            additionx1: parseInt(value),
+                            additionx1:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -303,7 +304,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            additiony1: parseInt(value),
+                            additiony1:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -315,7 +317,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            additionx2: parseInt(value),
+                            additionx2:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -327,7 +330,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            additiony2: parseInt(value),
+                            additiony2:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -367,7 +371,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            multiplicationx1: parseInt(value),
+                            multiplicationx1:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -379,7 +384,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            multiplicationy1: parseInt(value),
+                            multiplicationy1:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -391,7 +397,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            multiplicationx2: parseInt(value),
+                            multiplicationx2:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
@@ -403,7 +410,8 @@ const SpeechToText = () => {
                         onValueChange={(value: string) =>
                           setSettings({
                             ...settings,
-                            multiplicationy2: parseInt(value),
+                            multiplicationy2:
+                              value === "" ? 0 : parseInt(value, 10) || 0,
                           })
                         }
                       />
