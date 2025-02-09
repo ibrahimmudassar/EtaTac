@@ -33,7 +33,9 @@ export default function DataPage() {
           {splits.length > 0 ? (
             <div className="flex flex-col py-7 gap-4">
               <div className="flex gap-2">
-                <p>Questions Answered: {splits.length}</p>
+                <p>
+                  Questions Answered: {Math.round(splits.length * 1000) / 1000}
+                </p>
                 <p>
                   Total time played:{" "}
                   {splits.reduce((sum, obj) => sum + (obj["elapsed"] || 0), 0)}{" "}
