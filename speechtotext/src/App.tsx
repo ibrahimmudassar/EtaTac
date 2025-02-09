@@ -17,9 +17,9 @@ function App() {
         <Routes>
           <Route element={<IndexPage />} path="/" />
           <Route element={<DataPage />} path="/data" />
-          <Route element={<PricingPage />} path="/pricing" />
+          {/* <Route element={<PricingPage />} path="/pricing" />
           <Route element={<BlogPage />} path="/blog" />
-          <Route element={<AboutPage />} path="/about" />
+          <Route element={<AboutPage />} path="/about" /> */}
         </Routes>
       </ArrayProvider>
     </>

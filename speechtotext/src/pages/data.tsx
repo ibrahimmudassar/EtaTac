@@ -13,7 +13,11 @@ import {
 } from "@heroui/table";
 
 export default function DataPage() {
-  const { splits, setSplits } = useContext(ArrayContext);
+  // const { splits, setSplits } = useContext(ArrayContext);
+  const splits = [
+    { question: "", elapsed: 1 },
+    { question: "", elapsed: 1 },
+  ];
   const columns = [
     {
       key: "question",
@@ -31,7 +35,16 @@ export default function DataPage() {
         <div className="inline-block max-w-lg text-center justify-center">
           <h1 className={title()}>Data</h1>
           {splits.length > 0 ? (
-            <div className="py-7">
+            <div className="flex flex-col py-7 gap-4">
+              <div className="flex gap-2">
+                <p>Questions Answered: {splits.length}</p>
+                <p>
+                  Total time played:{" "}
+                  {splits.reduce((sum, obj) => sum + (obj["elapsed"] || 0), 0)}{" "}
+                  seconds
+                </p>
+              </div>
+
               <Table aria-label="Example table with dynamic content">
                 <TableHeader columns={columns}>
                   {(column) => (
