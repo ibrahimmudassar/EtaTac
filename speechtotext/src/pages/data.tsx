@@ -13,11 +13,7 @@ import {
 } from "@heroui/table";
 
 export default function DataPage() {
-  // const { splits, setSplits } = useContext(ArrayContext);
-  const splits = [
-    { question: "", elapsed: 1 },
-    { question: "", elapsed: 1 },
-  ];
+  const { splits, setSplits } = useContext(ArrayContext);
   const columns = [
     {
       key: "question",
