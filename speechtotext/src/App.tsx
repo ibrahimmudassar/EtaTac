@@ -3,8 +3,11 @@ import { ArrayProvider } from "@/components/global";
 
 import IndexPage from "@/pages/index";
 import DataPage from "@/pages/data";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
+import PlayArithmetic from "@/pages/docs";
+import Blog from "@/pages/blog";
+import BlogSecretsOfMentalMath from "@/pages/BlogSecretsOfMentalMath";
+import FAQ from "@/pages/FAQ";
+
 import AboutPage from "@/pages/about";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -16,10 +19,18 @@ function App() {
       <ArrayProvider>
         <Routes>
           <Route element={<IndexPage />} path="/" />
-          <Route element={<DataPage />} path="/data" />
+          <Route element={<DataPage />} path="data" />
+          <Route element={<Blog />} path="resources" />
+          <Route
+            element={<BlogSecretsOfMentalMath />}
+            path="resources/secrets_of_mental_math"
+          />
+          <Route element={<FAQ />} path="faq" />
+
+          <Route element={<PlayArithmetic />} path="play_arithmetic" />
           {/* <Route element={<PricingPage />} path="/pricing" />
-          <Route element={<BlogPage />} path="/blog" />
-          <Route element={<AboutPage />} path="/about" /> */}
+          <Route element={<BlogPage />} path="/blog" /> */}
+          <Route element={<AboutPage />} path="/about" />
         </Routes>
       </ArrayProvider>
     </>
