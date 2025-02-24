@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, useContext } from "react";
 import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
@@ -15,7 +16,8 @@ import { CSVLink, CSVDownload } from "react-csv";
 import { Button } from "@heroui/button";
 
 export default function DataPage() {
-  const { splits, setSplits } = useContext(ArrayContext);
+  const { splits } = useContext(ArrayContext);
+  // const splits = []
   const columns = [
     {
       key: "question",
@@ -36,16 +38,16 @@ export default function DataPage() {
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
           <h1 className={title()}>Data</h1>
-          {splits.length > 0 ? (
+          {splits?.length > 0 ? (
             <div className="flex flex-col py-7 gap-4">
               <div className="flex gap-2">
                 <p>
-                  Questions Answered: {Math.round(splits.length * 1000) / 1000}
+                  Questions Answered: {Math.round(splits?.length * 1000) / 1000}
                 </p>
                 <p>
                   Total time played:{" "}
                   {Math.round(
-                    splits.reduce(
+                    splits?.reduce(
                       (sum, obj) => sum + (obj["elapsed"] || 0),
                       0
                     ) * 1000

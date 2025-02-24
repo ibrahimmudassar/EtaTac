@@ -5,7 +5,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { Button, ButtonGroup } from "@heroui/button";
-import { NumberInput } from "@heroui/number-input";
 import { useTimer } from "react-use-precision-timer";
 import { ArrayContext } from "@/components/global";
 import { usePathname } from "next/navigation";
@@ -22,7 +21,22 @@ import { CheckboxGroup, Checkbox } from "@heroui/checkbox";
 import { Input } from "@heroui/input";
 
 const SpeechToText = () => {
-  const { splits, setSplits, settings, setSettings } = useContext(ArrayContext);
+  const { splits, setSplits } = useContext(ArrayContext);
+
+  const [settings, setSettings] = useState({
+    isAdditionUsed: true,
+    isSubtractionUsed: true,
+    isMultiplicationUsed: true,
+    isDivisionUsed: true,
+    additionx1: 2,
+    additiony1: 100,
+    additionx2: 2,
+    additiony2: 100,
+    multiplicationx1: 2,
+    multiplicationy1: 12,
+    multiplicationx2: 2,
+    multiplicationy2: 100,
+  });
 
   const location = usePathname();
   const result = location.split("/").map((_, index) =>
@@ -268,29 +282,29 @@ const SpeechToText = () => {
       <div className="flex flex-col items-center">
         <ButtonGroup>
           <Button
+            color={listening ? "success" : "danger"}
             size="lg"
             variant="shadow"
             onPress={listening ? stopSession : () => startSession()}
-            color={listening ? "success" : "danger"}
           >
             mic {listening ? "on" : "off"}
           </Button>
-          <Button size="lg" onPress={reset} variant="shadow" color="warning">
+          <Button color="warning" size="lg" variant="shadow" onPress={reset}>
             reset
           </Button>
           <Button
             isIconOnly
             size="lg"
-            onPress={onSettingsOpen}
             variant="shadow"
+            onPress={onSettingsOpen}
           >
             <IoSettingsSharp />
           </Button>
         </ButtonGroup>
         <Modal
           isOpen={isSettingsOpen}
-          onOpenChange={onSettingsOpenChange}
           size="2xl"
+          onOpenChange={onSettingsOpenChange}
         >
           <ModalContent>
             {(onClose) => (
@@ -303,8 +317,8 @@ const SpeechToText = () => {
                     defaultValue={["add", "subtract", "multiply", "divide"]}
                   >
                     <Checkbox
-                      value="add"
                       isSelected={settings.isAdditionUsed}
+                      value="add"
                       onValueChange={(isSelected: boolean) =>
                         setSettings({ ...settings, isAdditionUsed: isSelected })
                       }
@@ -367,8 +381,8 @@ const SpeechToText = () => {
                       <p>)</p>
                     </div>
                     <Checkbox
-                      value="subtract"
                       isSelected={settings.isSubtractionUsed}
+                      value="subtract"
                       onValueChange={(isSelected: boolean) =>
                         setSettings({
                           ...settings,
@@ -380,8 +394,8 @@ const SpeechToText = () => {
                     </Checkbox>
                     <p>&emsp; &emsp;Addition problems in reverse.</p>
                     <Checkbox
-                      value="multiply"
                       isSelected={settings.isMultiplicationUsed}
+                      value="multiply"
                       onValueChange={(isSelected: boolean) =>
                         setSettings({
                           ...settings,
@@ -447,8 +461,8 @@ const SpeechToText = () => {
                       <p>)</p>
                     </div>
                     <Checkbox
-                      value="divide"
                       isSelected={settings.isDivisionUsed}
+                      value="divide"
                       onValueChange={(isSelected: boolean) =>
                         setSettings({ ...settings, isDivisionUsed: isSelected })
                       }
@@ -477,13 +491,13 @@ const SpeechToText = () => {
         <p className="text-8xl font-bold">{randomNum.question}</p>
         {elapsed > 0 ? (
           <Input
+            ref={inputRef}
             autoFocus
             aria-label="Enter your answer here"
-            ref={inputRef}
+            isDisabled={!listening}
             placeholder="Answer"
             value={value}
             onValueChange={setValue}
-            isDisabled={!listening}
           />
         ) : (
           <></>
