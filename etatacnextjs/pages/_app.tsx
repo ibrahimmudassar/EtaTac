@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { ArrayProvider } from "@/components/global";
+import { Analytics } from "@vercel/analytics/next";
 
 import { HeroUIProvider } from "@heroui/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
@@ -12,13 +13,16 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        <ArrayProvider>
-          <Component {...pageProps} />
-        </ArrayProvider>
-      </NextThemesProvider>
-    </HeroUIProvider>
+    <>
+      <Analytics />
+      <HeroUIProvider navigate={router.push}>
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+          <ArrayProvider>
+            <Component {...pageProps} />
+          </ArrayProvider>
+        </NextThemesProvider>
+      </HeroUIProvider>
+    </>
   );
 }
 

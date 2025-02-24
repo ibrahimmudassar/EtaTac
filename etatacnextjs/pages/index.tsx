@@ -1,6 +1,6 @@
 import Link from "next/link";
+import DefaultLayout from "@/layouts/default";
 
-import { Navbar } from "@/components/navbar";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { ColourfulText } from "@/components/ui/colourful-text";
@@ -29,8 +29,7 @@ export default function IndexPage() {
   ];
 
   return (
-    <>
-      <Navbar />
+    <DefaultLayout>
       <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 h-svh">
         <h1 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
           Modern <ColourfulText text="Mental Math" /> <br /> For The Modern
@@ -58,6 +57,6 @@ export default function IndexPage() {
         </h2>
         <HoverEffect items={projects} />
       </div>
-    </>
+    </DefaultLayout>
   );
 }
