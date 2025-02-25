@@ -61,10 +61,14 @@ const SpeechToText = () => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  useEffect(() => {
+  const autoFocusInput = () => {
     if (elapsed > 0) {
       inputRef.current.focus();
     }
+  };
+
+  useEffect(() => {
+    autoFocusInput();
   }, [listening]);
 
   const [value, setValue] = React.useState("");
@@ -224,6 +228,7 @@ const SpeechToText = () => {
     resetTranscript();
     question();
     stopwatch.start();
+    autoFocusInput();
   };
 
   const startSession = () => {
