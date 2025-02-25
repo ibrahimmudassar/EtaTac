@@ -24,10 +24,7 @@ const SpeechToText = () => {
   const { splits, setSplits } = useContext(ArrayContext);
 
   const [settings, setSettings] = useState({
-    isAdditionUsed: true,
-    isSubtractionUsed: true,
-    isMultiplicationUsed: true,
-    isDivisionUsed: true,
+    operationsUsed: ["add", "subtract", "multiply", "divide"],
     additionx1: 2,
     additiony1: 100,
     additionx2: 2,
@@ -207,21 +204,25 @@ const SpeechToText = () => {
   };
 
   const question = () => {
-    const operations = [];
+    // const operations = [];
 
-    if (settings.isAdditionUsed) operations.push("addition");
-    if (settings.isSubtractionUsed) operations.push("subtraction");
-    if (settings.isMultiplicationUsed) operations.push("multiplication");
-    if (settings.isDivisionUsed) operations.push("division");
+    // if (settings.isAdditionUsed) operations.push("addition");
+    // if (settings.isSubtractionUsed) operations.push("subtraction");
+    // if (settings.isMultiplicationUsed) operations.push("multiplication");
+    // if (settings.isDivisionUsed) operations.push("division");
 
-    if (operations.length === 0) return null;
+    if (settings.operationsUsed.length === 0) return null;
 
-    const randomIndex = Math.floor(Math.random() * operations.length);
+    const randomIndex = Math.floor(
+      Math.random() * settings.operationsUsed.length
+    );
 
-    if (operations[randomIndex] == "addition") additionQuestion();
-    if (operations[randomIndex] == "subtraction") subtractionQuestion();
-    if (operations[randomIndex] == "multiplication") multiplicationQuestion();
-    if (operations[randomIndex] == "division") divisionQuestion();
+    if (settings.operationsUsed[randomIndex] == "add") additionQuestion();
+    if (settings.operationsUsed[randomIndex] == "subtract")
+      subtractionQuestion();
+    if (settings.operationsUsed[randomIndex] == "multiply")
+      multiplicationQuestion();
+    if (settings.operationsUsed[randomIndex] == "divide") divisionQuestion();
   };
 
   const reset = () => {
@@ -319,17 +320,15 @@ const SpeechToText = () => {
                 </ModalHeader>
                 <ModalBody>
                   <CheckboxGroup
-                    defaultValue={["add", "subtract", "multiply", "divide"]}
+                    value={settings.operationsUsed}
+                    onValueChange={(value: string[]) =>
+                      setSettings({
+                        ...settings,
+                        operationsUsed: value,
+                      })
+                    }
                   >
-                    <Checkbox
-                      isSelected={settings.isAdditionUsed}
-                      value="add"
-                      onValueChange={(isSelected: boolean) =>
-                        setSettings({ ...settings, isAdditionUsed: isSelected })
-                      }
-                    >
-                      Addition
-                    </Checkbox>
+                    <Checkbox value="add">Addition</Checkbox>
                     <div className="flex flex-row">
                       <p>&emsp; &emsp;Range: (</p>
                       <Input
@@ -385,31 +384,9 @@ const SpeechToText = () => {
                       />
                       <p>)</p>
                     </div>
-                    <Checkbox
-                      isSelected={settings.isSubtractionUsed}
-                      value="subtract"
-                      onValueChange={(isSelected: boolean) =>
-                        setSettings({
-                          ...settings,
-                          isSubtractionUsed: isSelected,
-                        })
-                      }
-                    >
-                      Subtraction
-                    </Checkbox>
+                    <Checkbox value="subtract">Subtraction</Checkbox>
                     <p>&emsp; &emsp;Addition problems in reverse.</p>
-                    <Checkbox
-                      isSelected={settings.isMultiplicationUsed}
-                      value="multiply"
-                      onValueChange={(isSelected: boolean) =>
-                        setSettings({
-                          ...settings,
-                          isMultiplicationUsed: isSelected,
-                        })
-                      }
-                    >
-                      Multiplication
-                    </Checkbox>
+                    <Checkbox value="multiply">Multiplication</Checkbox>
                     <div className="flex flex-row">
                       <p>&emsp; &emsp;Range: (</p>
                       <Input
@@ -465,15 +442,7 @@ const SpeechToText = () => {
                       />
                       <p>)</p>
                     </div>
-                    <Checkbox
-                      isSelected={settings.isDivisionUsed}
-                      value="divide"
-                      onValueChange={(isSelected: boolean) =>
-                        setSettings({ ...settings, isDivisionUsed: isSelected })
-                      }
-                    >
-                      Division
-                    </Checkbox>
+                    <Checkbox value="divide">Division</Checkbox>
                     <p>&emsp; &emsp;Multiplication problems in reverse.</p>
                   </CheckboxGroup>
                 </ModalBody>
