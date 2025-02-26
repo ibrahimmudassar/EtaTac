@@ -484,6 +484,7 @@ const SpeechToText = () => {
             aria-label="Enter your answer here"
             placeholder="Answer"
             value={value}
+            isDisabled={stopwatch.isStopped()}
             onValueChange={setValue}
           />
         ) : (
