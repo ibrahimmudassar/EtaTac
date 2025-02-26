@@ -3,6 +3,7 @@ import { ArrayProvider } from "@/components/global";
 import { Analytics } from "@vercel/analytics/next";
 
 import { HeroUIProvider } from "@heroui/system";
+import { ToastProvider } from "@heroui/toast";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/router";
 
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <HeroUIProvider navigate={router.push}>
         <NextThemesProvider attribute="class" defaultTheme="dark">
           <ArrayProvider>
+            <ToastProvider />
             <Component {...pageProps} />
           </ArrayProvider>
         </NextThemesProvider>

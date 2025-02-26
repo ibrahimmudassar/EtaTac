@@ -19,6 +19,7 @@ import {
 } from "@heroui/modal";
 import { CheckboxGroup, Checkbox } from "@heroui/checkbox";
 import { Input } from "@heroui/input";
+import { addToast } from "@heroui/toast";
 
 const SpeechToText = () => {
   const { splits, setSplits } = useContext(ArrayContext);
@@ -67,6 +68,19 @@ const SpeechToText = () => {
   useEffect(() => {
     autoFocusInput();
   }, [listening]);
+
+  useEffect(() => {
+    if (!browserSupportsSpeechRecognition) {
+      addToast({
+        title: "Mic won't work",
+        description:
+          "Your browser doesn't support speech recognition at this time. You can still type!",
+        color: "danger",
+        timeout: 3000,
+        shouldShowTimeoutProgess: true,
+      });
+    }
+  }, []);
 
   const [value, setValue] = React.useState("");
 
@@ -288,12 +302,12 @@ const SpeechToText = () => {
       <div className="flex flex-col items-center">
         <ButtonGroup>
           <Button
-            color={listening ? "success" : "danger"}
+            color={stopwatch.isRunning() ? "success" : "danger"}
             size="lg"
             variant="shadow"
-            onPress={listening ? stopSession : () => startSession()}
+            onPress={stopwatch.isRunning() ? stopSession : () => startSession()}
           >
-            mic {listening ? "on" : "off"}
+            {stopwatch.isRunning() ? "play" : "paused"}
           </Button>
           <Button color="warning" size="lg" variant="shadow" onPress={reset}>
             reset
@@ -468,7 +482,6 @@ const SpeechToText = () => {
             ref={inputRef}
             autoFocus
             aria-label="Enter your answer here"
-            isDisabled={!listening}
             placeholder="Answer"
             value={value}
             onValueChange={setValue}
