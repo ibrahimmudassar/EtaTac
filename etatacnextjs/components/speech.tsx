@@ -86,7 +86,7 @@ const SpeechToText = () => {
   const [elapsed, setElapsed] = useState(0);
 
   const stopwatch = useTimer(
-    { delay: 140 },
+    { delay: 1 },
     React.useCallback(
       () => setElapsed(stopwatch.getElapsedRunningTime() / 1000),
       []
@@ -458,7 +458,7 @@ const SpeechToText = () => {
       </div>
       <div className="flex flex-col items-center gap-6">
         {elapsed > 0 ? (
-          <p className="text-4xl font-bold">{elapsed}</p>
+          <p className="text-4xl font-bold">{elapsed.toFixed(3)}</p>
         ) : (
           <p className="text-xl font-bold">⬆️Turn on the mic to play⬆️</p>
         )}
